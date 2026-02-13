@@ -1,32 +1,38 @@
 # Simple Web Application
 
-This is a simple web application built using **Python Flask** and **MySQL**.  
-The project is used to demonstrate application deployment and the development of **Ansible Playbooks** on a Linux system.
+This is a simple web application using Python Flask and MySQL database. This is used in the demonstration of the development of Ansible Playbooks.
 
----
+Below are the steps required to get this working on a base linux system.
 
-## 📌 Project Overview
+    Install all required dependencies
+    Install and Configure Web Server
+    Start Web Server
+## 1. Install all required dependencies
+Python and its dependencies
+apt-get install -y python3 python3-setuptools python3-dev build-essential python3-pip default-libmysqlclient-dev
 
-This application demonstrates:
-
-- Basic Flask web server setup
-- MySQL database integration
-- Dependency installation on Linux
-- Manual deployment process (foundation for Ansible automation)
-
----
-
-## ⚙️ Setup Instructions
-
-Follow the steps below to run the application on a base Linux system.
-
----
-
-## 1️⃣ Install Required Dependencies
-
-### Install Python and required system packages:
+## 2. Install and Configure Web Server
+Install Python Flask dependency
 
 ```bash
-apt-get update
-apt-get install -y python3 python3-setuptools python3-dev build-essential python3-pip default-libmysqlclient-dev
+pip3 install flask
+pip3 install flask-mysql
+
+
+    Copy app.py or download it from a source repository
+    Configure database credentials and parameters
+
+## 3. Start Web Server
+Start web server
+
+```bash
+FLASK_APP=app.py flask run --host=0.0.0.0
+
+
+## 4. Test
+Open a browser and go to URL
+
+```bash
+http://<IP>:5000                            => Welcome
+http://<IP>:5000/how%20are%20you            => I am good, how about you?
 
