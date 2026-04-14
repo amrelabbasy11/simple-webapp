@@ -38,6 +38,6 @@ FLASK_APP=app.py flask run --host=0.0.0.0
 
 Open a browser and go to URL
 ```
-http://<IP>:5000                            => Welcome
-http://<IP>:5000/how%20are%20you            => I am good, how about you?
+http://<IP>:8080                            => Welcome
+http://<IP>:8080/how%20are%20you            => I am good, how about you?
 ```
