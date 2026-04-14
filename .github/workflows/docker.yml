@@ -26,5 +26,5 @@ jobs:
            run: docker push ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
 
          - name: Run Container
-           run: docker run -d -p 8080:5000 ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
+           run: docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
 
