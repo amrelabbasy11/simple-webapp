@@ -27,13 +27,15 @@ jobs:
       # Like checkstyle in java
       - name: Auto format
         run: pip install black && black .
-
+        
       - name: Run Flake8 (Code Style)
         run: flake8 .
 
       - name: Run Pytest
         run: pytest -v
-        
+        env:
+         PYTHONPATH: .
+
       - name: Generate Coverage
         run: coverage run -m pytest
 
