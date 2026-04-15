@@ -23,7 +23,7 @@ Install Python Flask dependency
 pip3 install flask
 pip3 install flask-mysql
 ```
-
+ 
 - Copy app.py or download it from a source repository
 - Configure database credentials and parameters 
 
