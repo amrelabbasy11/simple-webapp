@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  # Job 1: Build & Push (Cloud Runner)
+  # Job 1: Cloud Runner
   build:
     runs-on: ubuntu-latest
 
@@ -26,24 +26,25 @@ jobs:
       - name: Push Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
 
-
-  # Job 2: Deploy (Self-Hosted Runner)
+ # Job 2: Self Runner
   deploy:
-    runs-on: self-hosted
-    needs: build 
+    runs-on: ubuntu-latest
+    needs: build
 
     steps:
-      - name: Pull Image
-        run: docker pull ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}    
+          username: ubuntu
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            docker pull ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
 
-      - name: Stop Old Container
-        run: |
-          docker stop flask-app || true
-          docker rm flask-app || true
+            docker stop flask-app || true
+            docker rm flask-app || true
 
-      - name: Run New Container
-        run: |
-          docker run -d \
-            --name flask-app \
-            -p 8080:8080 \
-            ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
+            docker run -d \
+              --name flask-app \
+              -p 8080:8080 \
+              ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
