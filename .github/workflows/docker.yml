@@ -25,6 +25,9 @@ jobs:
           pip install pytest flake8 coverage
 
       # Like checkstyle in java
+      - name: Auto format
+        run: pip install black && black .
+        
       - name: Run Flake8 (Code Style)
         run: flake8 .
 
