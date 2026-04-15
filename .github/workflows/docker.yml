@@ -7,7 +7,7 @@ on:
 
 jobs:
  # Job 1: Testing
-  quality:
+  Testing:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,6 +30,8 @@ jobs:
 
       - name: Run Pytest
         run: pytest -v
+        env:
+         PYTHONPATH: .
 
       - name: Generate Coverage
         run: coverage run -m pytest
@@ -40,7 +42,7 @@ jobs:
  # Job 2: Build
   build:
     runs-on: ubuntu-latest
-    needs: quality
+    needs: Testing
 
     steps:
       - name: Checkout code
