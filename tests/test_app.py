@@ -11,3 +11,4 @@ def test_hello():
     client = app.test_client()
     response = client.get("/how are you")
     assert response.status_code == 200
+    
