@@ -35,9 +35,4 @@ jobs:
             env:
                 PYTHONPATH: .
 
-          - name: Generate Coverage
-            run: coverage run -m pytest
-
-          - name: Export Coverage XML
-            run: coverage xml
-
+         
